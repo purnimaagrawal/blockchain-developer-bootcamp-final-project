@@ -17,4 +17,6 @@ Future Implementation scopes :
 - Special discounts can be provided when booked using platform native token .
 - Reward system can be implemented . For example everytime a booking is completed , traveller can get back 2% of the total booking price back in his/her wallet .
 - Invite Program : User can refer friends and family and get rewarded for each referral .
-- 
+- travel packages
+- additional travel products like renting cars ,bus,transfers and other services.
+- NFT ?
