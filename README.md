@@ -9,13 +9,14 @@ Workflow:
 2) Someone who wants to rent the property can place a new booking.
 3) while placing the booking request , our Dapp will check if the property is available to rent for the dates or not .
 4) funds will be send to the propoerty owner once booking has been confirmed .
-
+5) Traveller can query the property he has booked .
 
 Future Implementation scopes : 
 - Platform can have its own token that can be used to pay for the booking .
 - platform can support other tokens as well .
 - Special discounts can be provided when booked using platform native token .
 - Reward system can be implemented . For example everytime a booking is completed , traveller can get back 2% of the total booking price back in his/her wallet .
+- Can support booking cancellations and refunds . 
 - Invite Program : User can refer friends and family and get rewarded for each referral .
 - travel packages
 - additional travel products like renting cars ,bus,transfers and other services.
