@@ -1,0 +1,23 @@
+function rentOutProperty(string _name, string _description,uint _price ){
+ emit  NewProperty
+
+}
+function bookProperty(uint _propertyID, uint _checkindate, uint _checkoutdate){
+
+    //call createBooking
+    //call sendFunds 
+}
+
+function createBooking(uint _propertyID, uint _checkindate, uint _checkoutdate, address _user ){
+
+    emit NewBooking
+}
+
+function sendFunds(address _to, uint amount){
+
+}
+
+function getBookings(address _user){
+
+    
+}
