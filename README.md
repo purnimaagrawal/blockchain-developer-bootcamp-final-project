@@ -20,3 +20,4 @@ Future Implementation scopes :
 - travel packages
 - additional travel products like renting cars ,bus,transfers and other services.
 - NFT ?
+- Data analytics are applied to decentralised data stores in order to suggest optimal room rates based on comparable properties.
