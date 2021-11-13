@@ -28,7 +28,7 @@
                 />
               </div>
               <div class="form-group">
-                <label for="price">Price</label>
+                <label for="price">Price per night</label>
                 <input
                   type="text"
                   class="form-control"

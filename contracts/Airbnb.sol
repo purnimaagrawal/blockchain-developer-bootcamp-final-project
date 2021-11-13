@@ -32,7 +32,6 @@ contract Airbnb {
 
   // mapping of bookingId to Booking object
   mapping(uint256 => Booking) public bookings;
-
   // This event is emitted when a new property is put up for sale
   event NewProperty (
     uint256 indexed propertyId
@@ -41,7 +40,8 @@ contract Airbnb {
   // This event is emitted when a NewBooking is made
   event NewBooking (
     uint256 indexed propertyId,
-    uint256 indexed bookingId
+    uint256 indexed bookingId,
+    address indexed user
   );
 
   /**
@@ -110,7 +110,7 @@ contract Airbnb {
     }
 
     // Emit an event to notify clients
-    emit NewBooking(_propertyId, bookingId++);
+    emit NewBooking(_propertyId, bookingId++ ,msg.sender);
   }
 
   function _sendFunds (address beneficiary, uint256 value) internal {
@@ -130,4 +130,5 @@ contract Airbnb {
     );
     properties[_propertyId].isActive = false;
   }
+  
 }
