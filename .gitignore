@@ -1,1 +1,4 @@
 node_modules
+dapp-ui/.nuxt
+dapp-ui/dist
+dapp-ui/node_modules
