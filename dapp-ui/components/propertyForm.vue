@@ -28,18 +28,17 @@
                 />
               </div>
               <div class="form-group">
-                <label for="price">Price per night</label>
+                <label for="price">Price per night </label>
                 <input
                   type="text"
                   class="form-control"
                   v-model="price"
-                  placeholder="Price"
+                  placeholder="Price in ETH"
                 />
               </div>
               <button v-on:click="postAd" class="btn btn-primary float-right">
                 Submit
               </button>
-              <!-- <button class="btn btn-outline-secondary float-right mr-3" v-on:click="close">Cancel</button> -->
             </slot>
           </div>
         </div>

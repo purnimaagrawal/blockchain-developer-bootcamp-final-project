@@ -9,15 +9,18 @@
           <div class="modal-body">
             <slot name="body">
               <h3>Title: {{ propData.name }}</h3>
-              <h3>Price: {{ propData.price }}</h3>
+              <h3>Price: {{ propData.price }}ETH (${{propData.priceUSD}})</h3>
               <p>Description: {{ propData.description }}</p>
               <div class="row ml-4 p-2">
                 <datepicker :value="startDate" v-model="startDate"></datepicker>
                 <datepicker v-model="endDate"></datepicker>
               </div>
               <b-button v-on:click="book" class="mr-5 mt-3">
-                <span>Book Now</span>
+                <span>Book with ETHER</span>
               </b-button>
+               <b-button v-on:click="bookWithDAT" class="mr-5 mt-3">
+                <span>Book with DAT</span>
+                  </b-button>
             </slot>
           </div>
         </div>
@@ -29,7 +32,8 @@
 <script>
 import Datepicker from "vuejs-datepicker";
 
-import { bookProperty, web3 } from "~/plugins/utils";
+import { bookProperty, web3,bookPropertyDAT } from "~/plugins/utils";
+const axios = require('axios');
 
 export default {
   components: {
@@ -41,10 +45,15 @@ export default {
       showModal: false,
       startDate: new Date(),
       flag: true,
-      endDate: new Date(),
+      endDate: new Date(new Date()+1) ,
     };
   },
   methods: {
+    getEndDate(){
+        var date = new Date();
+        date.setDate(date.getDate() + 1);
+        return date;
+    },
     getDayOfYear(date) {
       var now = new Date(date);
       var start = new Date(now.getFullYear(), 0, 0);
@@ -56,19 +65,28 @@ export default {
       var day = Math.floor(diff / oneDay);
       return day;
     },
-    book() {
+   async book() {
       // get Start date
       const startDay = this.getDayOfYear(this.startDate);
-
       // get End date
       const endDay = this.getDayOfYear(this.endDate);
-
-      // price calculation
-      const totalPrice =
+       // convert usd to ether  
+    const totalPrice =
         web3().utils.toWei(this.propData.price, "ether") * (endDay - startDay);
+      //call utils.bookProperty
+      bookProperty(this.propData.id, startDay, endDay, totalPrice);  
+    },
+    async bookWithDAT(){
+  // get Start date
+      const startDay = this.getDayOfYear(this.startDate);
+      // get End date
+      const endDay = this.getDayOfYear(this.endDate);
+       // convert usd to ether  
+    const totalPrice =
+        web3().utils.toWei(this.propData.price, "ether") * (endDay - startDay);
+      //call utils.bookPropertyDAT
+      bookPropertyDAT(this.propData.id, startDay, endDay, totalPrice);  
 
-      // call utils.bookProperty
-      bookProperty(this.propData.id, startDay, endDay, totalPrice);
     },
   },
 };

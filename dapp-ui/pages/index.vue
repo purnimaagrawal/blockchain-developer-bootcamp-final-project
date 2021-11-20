@@ -2,11 +2,12 @@
   <div class="container m-5">
     <div>
        <div id="mm-detected"></div>
-      <h2 class="title">Decentralized Airbnb</h2>
-      <h6 class="subtitle">Places to stay around the world</h6> 
-                <div id="mm-detected"></div>
-                <button class="btn btn-primary" @click="sayhello">Get Bookings
+      <h3 class="subtitle">Places to stay around the world</h3> 
+
+        <div id="mm-detected"></div>
+        <button class="btn btn-primary" @click="sayhello">Get Bookings
         </button>
+       <button class="btn btn-secondary" @click="getFunds">Get Funds</button>
       <div class="row">
         <div class="m-3" v-for="post in posts">
           <card :propObject="post" key="post.id" />
@@ -18,8 +19,7 @@
 
 <script>
 import card from "~/components/card.vue";
-import { fetchAllProperties, setProvider,getPropertiesByUserEvent } from "~/plugins/utils";
-import { sampleTx } from "~/plugins/walletConnect";
+import { fetchAllProperties, setProvider,getPropertiesByUserEvent,fundAccount } from "~/plugins/utils";
 
 export default {
   components: {
@@ -38,14 +38,13 @@ export default {
     };
   },
   methods: {
-    async sendTx() {
-      await sampleTx();
-    },
     async sayhello(){
       var add = window.ethereum.selectedAddress;
-      console.log("user::",add);
      var listPropertiesByUser =  await getPropertiesByUserEvent(add);
      console.log("listPropertiesByUser:",listPropertiesByUser);
+      },
+    async getFunds(){
+     fundAccount(window.ethereum.selectedAddress);
       },
   },
 };
@@ -54,7 +53,7 @@ export default {
 <style>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 0;
   display: flex;
   justify-content: center;
   align-items: center;

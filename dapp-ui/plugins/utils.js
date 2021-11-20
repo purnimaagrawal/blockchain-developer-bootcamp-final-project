@@ -1,11 +1,17 @@
 import AirbnbABI from './airbnbABI'
+import AirbnbTokenABI from './airbnbTokenABI.json'
 const Web3 = require('web3')
-
+const axios = require('axios');
 let metamaskWeb3 = new Web3('http://localhost:8545')
+const HttpException = require('http-exception')
 let account = null
 let airbnbContract
-let airbnbContractAddress = '0x25b1659DA62D1C9594f51f0456103a7Ad56D1089' // Paste Contract address here
-
+let RATE = 3000;
+let airbnbTokenContract
+let airbnbContractAddress = '0x1F41F1e22bAa3b7F974E152C89Ed46AC343812B5' // Paste Airbnb Contract address here
+let airbnbTokenContractAddress = '0x326D3D3C55CfE9369996a9cF276De3daAaeafE84'   // Paste token Contract address here 
+let TokenOwneraddress = '0xC8F6943289b3d7d257E670f010CFdc0Aa05c3E88';            // Fund other account from this account
+let TokenOwnerPrivateKey = '0x1869a441b08585820b4da5b511866d0171d2c4f781ee301face49ab35040d76d'  // DO NOT PUT PRIVATE KEY HERE in production setup , use cloud service + encryption and salt to protect private key .
 export function web3() {
   return metamaskWeb3
 }
@@ -15,11 +21,8 @@ export const accountAddress = () => {
 }
 
 export async function setProvider() {
-  // TODO: get injected Metamask Object and create Web3 instance
   if (typeof window.ethereum !== 'undefined') {
     console.log("Metamask detected");
-    // let mmdet4cted = document.getElementById("mm-detected")
-    // mmdet4cted.innerHTML+= 'Metamak is available'
     alert("Metamak is available")
 }
 else {
@@ -44,15 +47,40 @@ else {
 
 
 function getAirbnbContract() {
-  // TODO: create and return contract Object
+  // create and return contract Object
   airbnbContract = airbnbContract || new metamaskWeb3.eth.Contract(AirbnbABI.abi, airbnbContractAddress)
   return airbnbContract
 
 }
 
+function getAirbnbTokenContract() {
+  // create and return contract Object
+  airbnbTokenContract = airbnbTokenContract || new metamaskWeb3.eth.Contract(AirbnbTokenABI.abi, airbnbTokenContractAddress)
+  return airbnbTokenContract
+
+}
+
+export async function fundAccount(account) {
+  const query = await getAirbnbTokenContract().methods.transfer(account,"10000000000000000000");
+  const encodedABI = query.encodeABI();
+  const signedTx = await metamaskWeb3.eth.accounts.signTransaction(
+    {
+      data: encodedABI,
+      from: TokenOwneraddress,
+      gas: 3000000,
+      to: airbnbTokenContractAddress,
+    },
+    TokenOwnerPrivateKey,
+    false,
+  );
+const sendSignedTx = await metamaskWeb3.eth.sendSignedTransaction(signedTx.rawTransaction)
+console.log("sendSignedTx",sendSignedTx);
+      if(sendSignedTx.transactionHash!=null){
+        alert(`Account funded with 10 DAT token, tx hash: ${sendSignedTx.transactionHash}`);
+      }
+}
 
 export async function postProperty(name, description, price) {
-  // TODO: call Airbnb.rentOutproperty
   const prop = await getAirbnbContract().methods.rentOutproperty(name, description, price).send({
     from: account[0]
   }).then((result) => {
@@ -66,14 +94,14 @@ export async function postProperty(name, description, price) {
 
 
 export async function bookProperty(spaceId, checkInDate, checkOutDate, totalPrice) {
-  // TODO: call Airbnb.rentSpace
   const prop = await getAirbnbContract().methods.rentProperty(spaceId, checkInDate, checkOutDate).send({
     from: account[0],
-    value: totalPrice,
+    value: totalPrice,  //wei
   }).then((result)=> {
-    
+   
     alert('Property Booked Successfully');
     bookPropertyEvents(result.blockNumber);
+
    
   },(error) =>{
      let err = error.message;
@@ -83,17 +111,46 @@ export async function bookProperty(spaceId, checkInDate, checkOutDate, totalPric
  });
 }
 
-export async function getBookingByID(bookingId){
+export async function bookPropertyDAT(spaceId, checkInDate, checkOutDate, totalPrice) {
+   try {
+    let priceDAT = totalPrice * RATE;
+    let checkBalance = await getAirbnbTokenContract().methods.balanceOf(window.ethereum.selectedAddress).call();
+    if(checkBalance<priceDAT){
+      throw new HttpException("Not enough balance");
+      }
+      let approveResp = await getAirbnbTokenContract().methods.approve(airbnbContractAddress,priceDAT.toString()).send({
+        from : account[0]
+       });
+       if(approveResp.status!==true){
+        throw new HttpException("Request not Approved");
+       }
+       const prop = await getAirbnbContract().methods.rentPropertyDAT(spaceId, checkInDate, checkOutDate).send({
+        from : account[0],
+       value: totalPrice,  //wei
+     });
+     alert('Property Booked Successfully');
+     bookPropertyEvents(prop.blockNumber);
+   }//end try
+   catch(e){
+    console.log("exception",e);
+    if(e.toString().includes("Not enough balance")){
+       alert("Not enough token balance ");
+    }
+    let err = e.message;
+    if(err.includes("property is not available")){
+      alert("Property not available for selected dates")
+    }
+   }
+}
 
+
+export async function getBookingByID(bookingId){
   const Booking = await getAirbnbContract().methods.bookings(bookingId).call();
   return Booking;
-  //console.log("Booking::",Booking);
 }
 export async function getPropertyByID(propertyId){
-
   const Property = await getAirbnbContract().methods. properties(propertyId).call();
   return Property;
-  //console.log("Property::",Property);
 }
 export async function postPropertyEvents(blockNumber){
  getAirbnbContract().events.NewProperty({
@@ -101,49 +158,38 @@ export async function postPropertyEvents(blockNumber){
  },function(error,event){       
    console.log("new property::", event) 
       }).on('data', function(event){
-
-    console.log("here",event); // same results as the optional callback above
+// same results as the optional callback above
     window.location.reload(true);
         
 })
 }
-
 export async function bookPropertyEvents(blockNumber){
-  console.log(blockNumber);
   getAirbnbContract().events.NewBooking({
    fromBlock: blockNumber
   },function(error,event){        
        }).on('data', function(event){
- 
-     console.log("here",event); // same results as the optional callback above
+  // same results as the optional callback above
      window.location.reload(true);
          
  })
  }
-
  export async function getPropertiesByUserEvent(requiredUser){
-  console.log("contract instance:",getAirbnbContract());
   var sample = new Array();
   getAirbnbContract().getPastEvents('NewBooking',{
     filter: {user: [requiredUser]},
     fromBlock: 0
   },  async function(error, events){
-     console.log(events[0].returnValues.propertyId); 
     
-     
      for(let i =0; i< events.length;i++){
         var obj = {};
         // sample.push({ Property :events[i].returnValues.propertyId,Booking :events[i].returnValues.bookingId});
          var booking =  await getBookingByID(events[i].returnValues.bookingId);
-         console.log("booking :",booking);
          var property = await getPropertyByID(events[i].returnValues.propertyId)
-         console.log("property :",property);
          obj.checkInDate = booking.checkInDate;
          obj.checkoutDate = booking.checkoutDate;
          obj.name = property.name;
           sample.push(obj);
      }
-  
     }
      )
   .then(function(events){
@@ -153,10 +199,8 @@ export async function bookPropertyEvents(blockNumber){
  }
 
 export async function fetchAllProperties() {
-  // TODO: call Airbnb.propertyId
-
   const propertyId = await getAirbnbContract().methods.propertyId().call()
-  
+    
   // iterate till property Id
   const properties = []
   for (let i = 0; i < propertyId; i++) {
@@ -165,10 +209,19 @@ export async function fetchAllProperties() {
       id: i,
       name: p.name,
       description: p.description,
-      price: metamaskWeb3.utils.fromWei(p.price)
+      price: metamaskWeb3.utils.fromWei(p.price),
+      priceUSD: await getUSDfromETH(metamaskWeb3.utils.fromWei(p.price))
     })
 
   }
   return properties
   // push each object to properties array
+}
+
+async function getUSDfromETH(ethprice){
+  let url = 'https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD'
+  var response =  await axios.get(url)
+  var result = response.data.USD;
+    let totalUSD = ethprice*result;
+     return parseFloat(totalUSD.toFixed(2));
 }

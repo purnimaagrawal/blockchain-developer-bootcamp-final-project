@@ -4,14 +4,14 @@
       <ul class="navbar-nav justify-content-end ml-auto">
         <li class="nav-item">
           <b-button v-on:click="toggle" class="mr-5 mt-3">
-            <span>Rent Your Property</span>
+            <span>Host Your Home</span>
           </b-button>
         </li>
       </ul>
     </nav>
 
     <property-form v-if="showModal">
-      <h3 slot="header">Rent Your Property</h3>
+      <h3 slot="header">Host Your Home</h3>
     </property-form>
   </div>
 </template>
@@ -19,7 +19,6 @@
 <script>
 import PropertyForm from "~/components/propertyForm.vue";
 import { accountAddress, setProvider, web3 } from "~/plugins/utils";
-import { initWalletConnect } from "~/plugins/walletConnect";
 
 export default {
   data() {
@@ -35,10 +34,6 @@ export default {
     toggle() {
       this.showModal = !this.showModal;
     },
-    walletConnect() {
-      // TODO: connect to walletconnect
-      initWalletConnect();
-    }
   }
 };
 </script>

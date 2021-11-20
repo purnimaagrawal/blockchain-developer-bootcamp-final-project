@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="card" style="width: 18rem">
+    <div class="card" style="width: 20rem">
       <img
         class="card-img-top"
-        src="~/assets/default.png"
+        src="~/assets/def.png"
         alt="Card image cap"
       />
       <div class="card-body">
-        <h4 class="card-title">Price: {{ propObject.price }}</h4>
+        <h4 class="card-title">Price/Night:{{ propObject.price }}ETH (${{propObject.priceUSD}})</h4>
         <h5 class="card-title">Name: {{ propObject.name }}</h5>
         <p class="card-text">Description: {{ propObject.description }}</p>
         <button class="btn btn-primary" v-on:click="displayDetails">
