@@ -15,7 +15,7 @@
                   type="text"
                   class="form-control"
                   v-model="title"
-                  placeholder="Enter Title"
+                  placeholder="Title"
                 />
               </div>
               <div class="form-group">
