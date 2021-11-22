@@ -27,26 +27,27 @@ Steps:
 1) Clone the Repository
 2) Install dependencies
   `npm install`
- 3) Run Local blockchain 
+3) Run Local blockchain 
 ` npm run test:ethereum`
  
- 4) Deploy your contracts
+4) Deploy your contracts
   - In another terminal from the project root folder:
     -  `truffle compile`
     -  `cd migrations`
     -  `truffle migrate`
   
-5) Copy paste the ERC20 token contract address in line 12 of uitls.js
-6) Copy paste Airbnb contract address in line 11 of utils.js
-7) To fund requesting accounts from UI with ERC20 token(Get Funds button), update the public and private key of any account with loaded token in line 13 and 14 of respectively of utils.js (any adress from your local running blockchain ). By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
+5) To run tests locally ,run  `truffle test`
+6) Copy paste the ERC20 token contract address in line 12 of utils.js
+7) Copy paste Airbnb contract address in line 11 of utils.js
+9) To fund requesting accounts from UI with ERC20 token(Get Funds button), update the public and private key of any account with loaded token in line 13 and 14 of respectively of utils.js (any adress from your local running blockchain ). By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
  
-8) Steps to setup UI :
+9) Steps to setup UI :
 - cd dapp-ui
 - npm install
 - npm run build
 - npm run start
 
-9) Open in localhost:3000
+10) Navigate to http://localhost:3000/ to see the app running.
 
 
 Front end url :
