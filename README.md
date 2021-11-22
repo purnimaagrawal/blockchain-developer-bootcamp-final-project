@@ -20,7 +20,7 @@ The Idea is to create Decentralized Airbnb. Home sharing is the ideal venue for 
 Prerequities:
  - Node JS
  - Truffle
- - Gnache-cli
+ - Ganache-cli
 
 Steps:
 
