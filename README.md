@@ -24,8 +24,39 @@ Future Implementation scopes :
 - Data analytics can be  applied to decentralised data stores in order to suggest optimal room rates based on comparable properties.
 
 
- Steps to setup UI :
+
+Deploy Locally :
+
+Prerequities:
+1) Node JS
+2) Truffle
+3) Gnache-cli
+
+
+1) Clone the Repository
+2) Install dependencies
+  npm install
+ 3) Run Local blockchain 
+ npm run test:ethereum
+ 
+ 4) deploy your contracts :
+   In another terminal from the project root folder:
+   truffle compile 
+   cd migrations
+   truffle migrate
+  
+ Copy paste the ERC20 token contract address in line 12
+ Copy paste Airbnb contract address in line 11
+ To fund requesting accounts from UI with ERC20 token(Get Funds button), update the public and private key of any account with loaded token in line 13 and 14 of respectively of utils.js (any adress from your local running blockchain )
+ 
+  Steps to setup UI :
 - cd dapp-ui
 - npm install
 - npm run build
 - npm run start
+
+Open in localhost:3000
+
+
+Front end url :
+https://dairbnb-final-project-2021.vercel.app/
