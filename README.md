@@ -42,8 +42,8 @@ Steps:
 To Populate the .env file :
  - create .env file inside the dapp-ui folder 
  - use the below keys in the .env file and the corresponding values will be the public and private keys of the account which holds the ERC20 token and can fund other accounts. 
-  - PRIVATE_KEY_FUND = <private key>
-  - PUBLIC_KEY_FUND = <public key>
+    - PRIVATE_KEY_FUND = <private key>
+    - PUBLIC_KEY_FUND = <public key>
  
   By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
 
