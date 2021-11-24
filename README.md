@@ -39,20 +39,22 @@ Steps:
 5) To run tests locally ,run  `truffle test`
 6) Copy paste the ERC20 token contract address in line 12 of utils.js
 7) Copy paste Airbnb contract address in line 11 of utils.js
-9) To fund requesting accounts from UI with ERC20 token(Get Funds button), update the public and private key of any account with loaded token in line 13 and 14 of respectively of utils.js (any adress from your local running blockchain ). By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
+8) To fund requesting accounts from UI with ERC20 token(Get Funds button), update the public and private key of any account with loaded token in line 13 and 14 of respectively of utils.js (any adress from your local running blockchain ). By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
+9) Populate .env file
  
-9) Steps to setup UI :
+
+10) Steps to setup UI :
 - cd dapp-ui
 - npm install
 - npm run build
 - npm run start
 
-10) Navigate to http://localhost:3000/ to see the app running.
+11) Navigate to http://localhost:3000/ to see the app running.
 
 
 Front end url :
 https://dairbnb-final-project-2021.vercel.app/
-
+It requires Ropsten ETH to interact . Get kETH here--> [https://faucet.dimensions.network/]
 
 ### Future Implementation scopes : 
 - Platform can have its own token that can be used to pay for the booking .
