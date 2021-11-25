@@ -1,4 +1,3 @@
-
 export default {
   mode: 'spa',
   /*
@@ -39,7 +38,8 @@ export default {
   */
   modules: [
     // Doc: https://bootstrap-vue.js.org/docs/
-    'bootstrap-vue/nuxt',
+     'bootstrap-vue/nuxt',
+     '@nuxtjs/dotenv',
   ],
   /*
   ** Build configuration
@@ -49,6 +49,9 @@ export default {
     ** You can extend webpack config here
     */
     extend(config, ctx) {
+      config.node = {
+        fs: 'empty'
+    }
     }
   }
 }

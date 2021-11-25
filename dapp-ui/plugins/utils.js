@@ -1,6 +1,5 @@
 import AirbnbABI from './airbnbABI'
 import AirbnbTokenABI from './airbnbTokenABI.json'
-require('dotenv').config()
 const Web3 = require('web3')
 const axios = require('axios');
 let metamaskWeb3 = new Web3('http://localhost:8545')
@@ -9,10 +8,10 @@ let account = null
 let airbnbContract
 let RATE = 3000;
 let airbnbTokenContract
-let airbnbContractAddress = '0x2592Ea578f24D72e701151df1c3E7C3FD749eA5a' // Paste Airbnb Contract address here
-let airbnbTokenContractAddress = '0x1979c404a44726722beaFC398B15395d2d55d306'   // Paste token Contract address here 
-let TokenOwneraddress = process.env.PUBLIC_KEY_FUND;            // Fund other account from this account
-let TokenOwnerPrivateKey = process.env.PRIVATE_KEY_FUND // DO NOT PUT PRIVATE KEY HERE in production setup , use cloud service + encryption and salt to protect private key .
+let airbnbContractAddress = process.env.ROPSTEN_AIRBNB_CONTRACT // Paste Airbnb Contract address here
+let airbnbTokenContractAddress = process.env.ROPSTEN_TOKEN_CONTRACT   // Paste token Contract address here 
+let TokenOwneraddress = process.env.PUBLIC_KEY_FUND;        // Fund other account from this account
+let TokenOwnerPrivateKey = process.env.PRIVATE_KEY_FUND;  // DO NOT PUT PRIVATE KEY HERE in production setup , use cloud service + encryption and salt to protect private key .
 export function web3() {
   return metamaskWeb3
 }
