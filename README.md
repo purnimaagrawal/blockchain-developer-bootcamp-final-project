@@ -18,7 +18,7 @@ The Idea is to create Decentralized Airbnb. Home sharing is the ideal venue for 
 ### Deploy Locally :
 
 Prerequities:
- - Node JS
+ - Node JS ( >= 14 < 15)
  - Truffle
  - Ganache-cli
 
@@ -36,25 +36,39 @@ Steps:
     -  `cd migrations`
     -  `truffle migrate`
   
-5) To run tests locally ,run  `truffle test`
-6) Copy paste the ERC20 token contract address in line 12 of utils.js
-7) Copy paste Airbnb contract address in line 11 of utils.js
-8) To fund requesting accounts from UI with ERC20 token(Get Funds button), update the public and private key of any account with loaded token in line 13 and 14 of respectively of utils.js (any adress from your local running blockchain ). By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
-9) Populate .env file
+5) Copy paste the ERC20 token contract address in line 12 of utils.js
+6) Copy paste Airbnb contract address in line 11 of utils.js
+7) To fund requesting accounts from UI with ERC20 token(Get Funds button), Populate .env file. 
+To Populate the .env file :
+ - create .env file inside the dapp-ui folder 
+ - use the below keys in the .env file and the corresponding values will be the public and private keys of the account which holds the ERC20 token and can fund other accounts. 
+    - PRIVATE_KEY_FUND = <private key>
+    - PUBLIC_KEY_FUND = <public key>
  
+  By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
 
-10) Steps to setup UI :
+8) Steps to setup UI :
 - cd dapp-ui
 - npm install
 - npm run build
 - npm run start
 
-11) Navigate to http://localhost:3000/ to see the app running.
+9) Navigate to http://localhost:3000/ to see the app running.
+10) Install metamask in your browser and connect to the localhost( Port `8545`) website . You can also Import your accounts from your local blockchain into metamask using private key.
+11) Import the account which deployed the contracts , this account will be having all the ERC20 token intial suuply .
+12) Once account has been imported , you can import your erc20 by providing ERC20 token contract address .  
+13) Now having ETH and ERC20 token balance in your imported account , You can either host your home or you can book a property .
+14) You can check the bookings made by this account using Get Booking button .
 
+## Running test locally 
+- To run tests locally ,run  `truffle test`
 
-Front end url :
-https://dairbnb-final-project-2021.vercel.app/
-It requires Ropsten ETH to interact . Get kETH here--> [https://faucet.dimensions.network/]
+## Interact 
+ -Front end url :
+   https://dairbnb-final-project-2021.vercel.app/
+ - SWitch to Rposten network in metamask.
+ - It requires Ropsten ETH to interact . Get ETH here--> [https://faucet.dimensions.network/]
+ - Import ERC20 token in metamask . Contract address provided [here](https://github.com/purnimaagrawal/blockchain-developer-bootcamp-final-project/blob/main/deployed_address.txt).
 
 ### Future Implementation scopes : 
 - Platform can have its own token that can be used to pay for the booking .
