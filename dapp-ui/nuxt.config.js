@@ -3,6 +3,10 @@ export default {
   /*
   ** Headers of the page
   */
+ env:{
+  NEXT_PUBLIC_PRI_KEY_FUND:process.env.NEXT_PUBLIC_PRI_KEY_FUND,
+  NEXT_PUBLIC_PUB_KEY_FUND:process.env.NEXT_PUBLIC_PUB_KEY_FUND
+ },
   head: {
     title: 'DAirbnb:Decentralized Airbnb',
     meta: [
@@ -52,6 +56,10 @@ export default {
       config.node = {
         fs: 'empty'
     }
-    }
+    },
+    env:{
+      NEXT_PUBLIC_PRI_KEY_FUND:process.env.NEXT_PUBLIC_PRI_KEY_FUND,
+      NEXT_PUBLIC_PUB_KEY_FUND:process.env.NEXT_PUBLIC_PUB_KEY_FUND
+     }
   }
 }
