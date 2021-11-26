@@ -16,8 +16,6 @@ let airbnbTokenContractAddress = '0x1979c404a44726722beaFC398B15395d2d55d306'   
 // let airbnbTokenContractAddress = '0xcef2268eccf12b02343b28a87c168a93546779f0'   // Paste token Contract address here 
 let TokenOwneraddress = process.env.NEXT_PUBLIC_PUB_KEY_FUND;        // Fund other account from this account
 let TokenOwnerPrivateKey = process.env.NEXT_PUBLIC_PRI_KEY_FUND;  // DO NOT PUT PRIVATE KEY HERE in production setup , use cloud service + encryption and salt to protect private key .
-console.log("TokenOwneraddress",TokenOwneraddress);
-console.log("TokenOwnerPrivateKey",TokenOwnerPrivateKey);
 export function web3() {
   return metamaskWeb3
 }
@@ -69,10 +67,6 @@ function getAirbnbTokenContract() {
 export async function fundAccount(account) {
   const query = await getAirbnbTokenContract().methods.transfer(account,"10000000000000000000");
   const encodedABI = query.encodeABI();
-  console.log("account",account);
-  console.log("TokenOwneraddress",TokenOwneraddress);
-  console.log("TokenOwnerPrivateKey",TokenOwnerPrivateKey);
-  console.log("airbnbTokenContractAddress",airbnbTokenContractAddress);
   const signedTx = await metamaskWeb3.eth.accounts.signTransaction(
     {
       data: encodedABI,
