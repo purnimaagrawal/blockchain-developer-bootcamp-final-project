@@ -8,8 +8,12 @@ let account = null
 let airbnbContract
 let RATE = 3000;
 let airbnbTokenContract
+//Ropsten
 let airbnbContractAddress = '0x2592Ea578f24D72e701151df1c3E7C3FD749eA5a'// Paste Airbnb Contract address here
 let airbnbTokenContractAddress = '0x1979c404a44726722beaFC398B15395d2d55d306'   // Paste token Contract address here 
+//Local
+// let airbnbContractAddress = '0x49c9af529139bf7855fda0d5a0f6404c444ae55e'// Paste Airbnb Contract address here
+// let airbnbTokenContractAddress = '0xcef2268eccf12b02343b28a87c168a93546779f0'   // Paste token Contract address here 
 let TokenOwneraddress = process.env.PUBLIC_KEY_FUND;        // Fund other account from this account
 let TokenOwnerPrivateKey = process.env.PRIVATE_KEY_FUND;  // DO NOT PUT PRIVATE KEY HERE in production setup , use cloud service + encryption and salt to protect private key .
 export function web3() {
@@ -63,6 +67,10 @@ function getAirbnbTokenContract() {
 export async function fundAccount(account) {
   const query = await getAirbnbTokenContract().methods.transfer(account,"10000000000000000000");
   const encodedABI = query.encodeABI();
+  console.log("account",account);
+  console.log("TokenOwneraddress",TokenOwneraddress);
+  console.log("TokenOwnerPrivateKey",TokenOwnerPrivateKey);
+  console.log("airbnbTokenContractAddress",airbnbTokenContractAddress);
   const signedTx = await metamaskWeb3.eth.accounts.signTransaction(
     {
       data: encodedABI,
