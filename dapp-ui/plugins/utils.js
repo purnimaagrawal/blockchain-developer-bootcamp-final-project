@@ -67,7 +67,7 @@ function getAirbnbTokenContract() {
 }
 
 export async function fundAccount(account) {
-  const query = await getAirbnbTokenContract().methods.transfer(account,"10000000000000000000");
+  const query = await getAirbnbTokenContract().methods.transfer(account,"30000000000000000000");
   const encodedABI = query.encodeABI();
   const signedTx = await metamaskWeb3.eth.accounts.signTransaction(
     {
