@@ -4,6 +4,8 @@ pragma solidity 0.8.0;
 
 import "./AirbnbToken.sol";
 
+///@title Contract for Rental apartments booking and hosting
+
 contract Airbnb {
 AirbnbToken token1 ;
   // Property to be rented out on Airbnb

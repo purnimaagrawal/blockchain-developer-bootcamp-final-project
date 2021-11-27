@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="container m-5">
     <div>
        <div id="mm-detected"></div>
@@ -15,15 +16,19 @@
       </div>
     </div>
   </div>
+   <booking-modal v-if="showModal" :propData="propObject"> </booking-modal>
+</div>
 </template>
 
 <script>
 import card from "~/components/card.vue";
 import { fetchAllProperties, setProvider,getPropertiesByUserEvent,fundAccount } from "~/plugins/utils";
+import BookingModal from "~/components/bookingModal.vue";
 
 export default {
   components: {
     card,
+    BookingModal,
   },
   async mounted() {
     // init Metamask
@@ -35,13 +40,12 @@ export default {
   data() {
     return {
       posts: [],
+      showModal: false,
     };
   },
   methods: {
     async sayhello(){
-      var add = window.ethereum.selectedAddress;
-     var listPropertiesByUser =  await getPropertiesByUserEvent(add);
-     console.log("listPropertiesByUser:",listPropertiesByUser);
+     this.showModal = !this.showModal;
       },
     async getFunds(){
      fundAccount(window.ethereum.selectedAddress);

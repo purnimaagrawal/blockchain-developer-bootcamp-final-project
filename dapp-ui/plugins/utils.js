@@ -6,7 +6,9 @@ let metamaskWeb3 = new Web3('http://localhost:8545')
 const HttpException = require('http-exception')
 let account = null
 let airbnbContract
+//1 ETH = 3000 DAT token assumed.
 let RATE = 3000;
+
 let airbnbTokenContract
 //Ropsten
 let airbnbContractAddress = '0x2592Ea578f24D72e701151df1c3E7C3FD749eA5a'// Paste Airbnb Contract address here
@@ -95,8 +97,6 @@ export async function postProperty(name, description, price) {
   });
 }
 
-
-
 export async function bookProperty(spaceId, checkInDate, checkOutDate, totalPrice) {
   const prop = await getAirbnbContract().methods.rentProperty(spaceId, checkInDate, checkOutDate).send({
     from: account[0],
@@ -162,7 +162,6 @@ export async function postPropertyEvents(blockNumber){
  },function(error,event){       
    console.log("new property::", event) 
       }).on('data', function(event){
-// same results as the optional callback above
     window.location.reload(true);
         
 })
@@ -172,34 +171,31 @@ export async function bookPropertyEvents(blockNumber){
    fromBlock: blockNumber
   },function(error,event){        
        }).on('data', function(event){
-  // same results as the optional callback above
      window.location.reload(true);
          
  })
  }
- export async function getPropertiesByUserEvent(requiredUser){
-  var sample = new Array();
-  getAirbnbContract().getPastEvents('NewBooking',{
+ export async function getPropertiesByUserEvent(requiredUser) {
+  let sample = new Array();
+  let AllEvents = await getAirbnbContract().getPastEvents('NewBooking',{
     filter: {user: [requiredUser]},
     fromBlock: 0
-  },  async function(error, events){
-    
-     for(let i =0; i< events.length;i++){
+  });
+  let id = 0;
+    for(let i =0; i< AllEvents.length;i++){
         var obj = {};
-        // sample.push({ Property :events[i].returnValues.propertyId,Booking :events[i].returnValues.bookingId});
-         var booking =  await getBookingByID(events[i].returnValues.bookingId);
-         var property = await getPropertyByID(events[i].returnValues.propertyId)
+         var booking =  await getBookingByID(AllEvents[i].returnValues.bookingId);
+         var property = await getPropertyByID(AllEvents[i].returnValues.propertyId)
          obj.checkInDate = booking.checkInDate;
          obj.checkoutDate = booking.checkoutDate;
          obj.name = property.name;
+         obj.id = id;
           sample.push(obj);
+          id++;
+          
      }
-    }
-     )
-  .then(function(events){
-      console.log(events) ;// same results as the optional callback above
-  });
-  return sample;
+     console.log("sample:",sample);
+   return sample;
  }
 
 export async function fetchAllProperties() {
@@ -228,4 +224,10 @@ async function getUSDfromETH(ethprice){
   var result = response.data.USD;
     let totalUSD = ethprice*result;
      return parseFloat(totalUSD.toFixed(2));
+}
+
+
+//TODO : Manage booking to be implemented in future. 
+async function manageBookings(bookingId){
+
 }
