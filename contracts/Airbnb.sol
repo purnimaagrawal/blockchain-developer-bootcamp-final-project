@@ -4,8 +4,9 @@ pragma solidity 0.8.0;
 
 import "./AirbnbToken.sol";
 
-///@title Contract for Rental apartments booking and hosting
-
+///@title Contract for Decentralised Airbnb
+///@author Purnima Agrawal
+///@notice Allows user to host or book apartments
 contract Airbnb {
 AirbnbToken token1 ;
   // Property to be rented out on Airbnb
@@ -110,7 +111,12 @@ AirbnbToken token1 ;
   }
   
   
-  
+    /**
+   * @dev Make an Airbnb booking using ERC20 token
+   * @param _propertyId id of the property to rent out
+   * @param checkInDate Check-in date
+   * @param checkoutDate Check-out date
+   */
   function rentPropertyDAT(uint256 _propertyId, uint256 checkInDate, uint256 checkoutDate) public payable  {
    Property storage property = properties[_propertyId];
 
@@ -137,6 +143,7 @@ AirbnbToken token1 ;
     // 1 ETH = RATE DAT 
     uint256 DATamount = RATE * weiamount;
      
+     //calling ERC20 contract transferFrom function to transfer token.
     token1.transferFrom(msg.sender,property.owner,DATamount);
 
     // conditions for a booking are satisfied, so make the booking
@@ -161,7 +168,6 @@ AirbnbToken token1 ;
 
   function _sendFunds (address  beneficiary, uint256 value) internal {
     // address(uint160()) is a weird solidity quirk
-    // Read more here: https://solidity.readthedocs.io/en/v0.5.10/050-breaking-changes.html?highlight=address%20payable#explicitness-requirements
     payable(address(uint160(beneficiary))).transfer(value);
   }
 
