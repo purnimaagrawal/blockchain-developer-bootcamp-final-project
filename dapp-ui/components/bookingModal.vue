@@ -10,8 +10,8 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>CheckInDate</th>
-                    <th>CheckOutDate</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
                 </tr>
             </thead>
             <tbody>

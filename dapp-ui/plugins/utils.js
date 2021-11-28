@@ -2,6 +2,7 @@ import AirbnbABI from './airbnbABI'
 import AirbnbTokenABI from './airbnbTokenABI.json'
 const Web3 = require('web3')
 const axios = require('axios');
+const BigNumber = require('bignumber.js');
 let metamaskWeb3 = new Web3('http://localhost:8545')
 const HttpException = require('http-exception')
 let account = null
@@ -114,12 +115,14 @@ export async function bookProperty(spaceId, checkInDate, checkOutDate, totalPric
 
 export async function bookPropertyDAT(spaceId, checkInDate, checkOutDate, totalPrice) {
    try {
+
     let priceDAT = totalPrice * RATE;
+    let x = (new BigNumber(priceDAT)).toFixed();
     let checkBalance = await getAirbnbTokenContract().methods.balanceOf(window.ethereum.selectedAddress).call();
-    if(checkBalance<priceDAT){
+    if(checkBalance<x){
       throw new HttpException("Not enough balance");
       }
-      let approveResp = await getAirbnbTokenContract().methods.approve(airbnbContractAddress,priceDAT.toString()).send({
+      let approveResp = await getAirbnbTokenContract().methods.approve(airbnbContractAddress,x.toString()).send({
         from : window.ethereum.selectedAddress
        });
        if(approveResp.status!==true){

@@ -33,30 +33,39 @@ export default {
   async mounted() {
     // init Metamask
     await setProvider();
-    if(window.ethereum.networkVersion !='3'){
+
+    if(parseInt(window.ethereum.networkVersion) < 100 && window.ethereum.networkVersion!='3'){
     alert("You need to be in Ropsten Network")
   }
+    ethereum.on('chainChanged', (_chainId) => {
+   if(_chainId !=3 && _chainId < 100 ){
+    alert("You need to be in Ropsten Network")
+    }
+       window.location.reload();
+  });
+
     // fetch all properties
-     if(window.ethereum.networkVersion =='3'){
+     
     const properties = await fetchAllProperties();
     this.posts = properties;
-     }
+    
 
-  window.ethereum.on('networkChanged', async function (networkId) {
-  // Time to reload your interface with the new networkId
-  if(networkId !=3 ){
-    alert("You need to be in Ropsten Network")
-     window.location.reload(true);
-  }
-  else{
-    const properties = await fetchAllProperties();
-    this.posts = properties;
-        if(this.posts.length > 0){
-           window.location.reload(true);
-        }
 
-  }
-})
+//   window.ethereum.on('networkChanged', async function (networkId) {
+//   // Time to reload your interface with the new networkId
+//   if(networkId !=3 ){
+//     alert("You need to be in Ropsten Network")
+//      window.location.reload(true);
+//   }
+//   else{
+//     const properties = await fetchAllProperties();
+//     this.posts = properties;
+//         if(this.posts.length > 0){
+//            window.location.reload(true);
+//         }
+
+//   }
+// })
   },
   data() {
     return {
