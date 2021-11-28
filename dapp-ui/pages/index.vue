@@ -53,6 +53,10 @@ export default {
      console.log(window.ethereum.selectedAddress);
     const properties = await fetchAllProperties();
     this.posts = properties;
+        if(this.posts.length > 0){
+           window.location.reload(true);
+        }
+
   }
 })
   },
