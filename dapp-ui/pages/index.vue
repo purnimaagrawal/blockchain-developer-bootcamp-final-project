@@ -36,6 +36,16 @@ export default {
     // fetch all properties
     const properties = await fetchAllProperties();
     this.posts = properties;
+  if(window.ethereum.networkVersion !='3'){
+ alert("You need to be in Ropsten Network")
+  }
+  window.ethereum.on('networkChanged', function (networkId) {
+  // Time to reload your interface with the new networkId
+  console.log("network chanegd ",networkId);
+  if(networkId !=3 ){
+    alert("You need to be in Ropsten Network")
+  }
+})
   },
   data() {
     return {

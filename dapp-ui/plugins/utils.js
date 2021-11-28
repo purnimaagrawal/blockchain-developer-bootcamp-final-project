@@ -14,8 +14,8 @@ let airbnbTokenContract
 let airbnbContractAddress = '0x2592Ea578f24D72e701151df1c3E7C3FD749eA5a'// Paste Airbnb Contract address here
 let airbnbTokenContractAddress = '0x1979c404a44726722beaFC398B15395d2d55d306'   // Paste token Contract address here 
 //Local
-// let airbnbContractAddress = '0x49c9af529139bf7855fda0d5a0f6404c444ae55e'// Paste Airbnb Contract address here
-// let airbnbTokenContractAddress = '0xcef2268eccf12b02343b28a87c168a93546779f0'   // Paste token Contract address here 
+// let airbnbContractAddress = '0x49C9af529139bF7855FdA0d5a0f6404c444aE55e'// Paste Airbnb Contract address here
+// let airbnbTokenContractAddress = '0xCef2268EcCf12b02343B28a87C168A93546779F0'   // Paste token Contract address here 
 let TokenOwneraddress = process.env.NEXT_PUBLIC_PUB_KEY_FUND;        // Fund other account from this account
 let TokenOwnerPrivateKey = process.env.NEXT_PUBLIC_PRI_KEY_FUND;  // DO NOT PUT PRIVATE KEY HERE in production setup , use cloud service + encryption and salt to protect private key .
 export function web3() {
@@ -50,7 +50,6 @@ else {
   }
   account = await metamaskWeb3.eth.getAccounts()
 }
-
 
 function getAirbnbContract() {
   // create and return contract Object
@@ -88,7 +87,7 @@ console.log("sendSignedTx",sendSignedTx);
 
 export async function postProperty(name, description, price) {
   const prop = await getAirbnbContract().methods.rentOutproperty(name, description, price).send({
-    from: account[0]
+    from: window.ethereum.selectedAddress
   }).then((result) => {
     alert('Property Posted Successfully');
     postPropertyEvents(result.blockNumber);
@@ -99,7 +98,7 @@ export async function postProperty(name, description, price) {
 
 export async function bookProperty(spaceId, checkInDate, checkOutDate, totalPrice) {
   const prop = await getAirbnbContract().methods.rentProperty(spaceId, checkInDate, checkOutDate).send({
-    from: account[0],
+    from: window.ethereum.selectedAddress,
     value: totalPrice,  //wei
   }).then((result)=> {
    
@@ -123,13 +122,13 @@ export async function bookPropertyDAT(spaceId, checkInDate, checkOutDate, totalP
       throw new HttpException("Not enough balance");
       }
       let approveResp = await getAirbnbTokenContract().methods.approve(airbnbContractAddress,priceDAT.toString()).send({
-        from : account[0]
+        from : window.ethereum.selectedAddress
        });
        if(approveResp.status!==true){
         throw new HttpException("Request not Approved");
        }
        const prop = await getAirbnbContract().methods.rentPropertyDAT(spaceId, checkInDate, checkOutDate).send({
-        from : account[0],
+        from : window.ethereum.selectedAddress,
        value: totalPrice,  //wei
      });
      alert('Property Booked Successfully');
