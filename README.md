@@ -51,7 +51,7 @@ To Populate the .env file :
   By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
 
 8) Steps to setup UI :
-- cd dapp-ui
+- From root directory , cd dapp-ui
 - npm install
 - npm run build
 - npm run start
