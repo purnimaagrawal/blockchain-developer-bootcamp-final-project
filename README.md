@@ -71,7 +71,7 @@ https://youtu.be/NwUjxLGHk2M
  
 ## Interact using publicly deployed web Interface
  -Front end url :
-  https://dairbnb-final-project-2021-3g7or2ecq-purnimaagrawal.vercel.app/. [More UI improvements needs to be done :( ]
+  https://dairbnb-final-project-2021-cx2imjs4l-purnimaagrawal.vercel.app/. [More UI improvements needs to be done :( ]
  
  - Switch to Rposten network in metamask.
  - It requires Ropsten ETH to interact . Get ETH here--> [https://faucet.dimensions.network/]
