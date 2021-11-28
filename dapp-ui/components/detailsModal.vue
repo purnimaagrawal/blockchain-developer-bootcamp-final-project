@@ -11,9 +11,10 @@
               <h3>Title: {{ propData.name }}</h3>
               <h3>Price: {{ propData.price }}ETH (${{propData.priceUSD}})</h3>
               <p>Description: {{ propData.description }}</p>
+              <h4> Select Dates : </h4>
               <div class="row ml-4 p-2">
-                <datepicker :value="startDate" v-model="startDate"></datepicker>
-                <datepicker v-model="endDate"></datepicker>
+                <datepicker :disabled-dates="disabledDates" v-model="startDate" ></datepicker>
+                <datepicker v-model="endDate"  ></datepicker>
               </div>
               <b-button v-on:click="book" class="mr-5 mt-3">
                 <span>Book with ETHER</span>
@@ -39,13 +40,21 @@ export default {
   components: {
     Datepicker,
   },
+  async mounted(){
+   const date = new Date();
+   date.setDate(date.getDate() + 1);
+    this.endDate = date;
+  },
   props: ["propData"],
   data() {
     return {
       showModal: false,
       startDate: new Date(),
       flag: true,
-      endDate: new Date(new Date()+1) ,
+      endDate: '',
+      disabledDates: {
+        to: new Date()
+      }
     };
   },
   methods: {
