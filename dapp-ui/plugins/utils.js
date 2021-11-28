@@ -82,7 +82,7 @@ export async function fundAccount(account) {
 const sendSignedTx = await metamaskWeb3.eth.sendSignedTransaction(signedTx.rawTransaction)
 console.log("sendSignedTx",sendSignedTx);
       if(sendSignedTx.transactionHash!=null){
-        alert(`Account funded with 10 DAT token, tx hash: ${sendSignedTx.transactionHash}`);
+        alert(`Account funded with 30 DAT token, tx hash: ${sendSignedTx.transactionHash}`);
       }
 }
 
