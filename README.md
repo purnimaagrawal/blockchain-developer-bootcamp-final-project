@@ -57,9 +57,9 @@ To Populate the .env file :
 - npm run start
 
 9) Navigate to http://localhost:3000/ to see the app running.
-10) Install metamask in your browser and connect to the localhost( Port `8545`) website . You can also Import your accounts from your local blockchain into metamask using private key.
+10) Install metamask in your browser and connect to the `Localhost 8545`( Port `8545`,chainID `1337`)  . You can also Import your accounts from your local blockchain into metamask using private key.
 11) Import the account which deployed the contracts , this account will be having all the ERC20 token intial suuply .
-12) Once account has been imported , you can import your erc20 by providing ERC20 token contract address .  
+12) Once account has been imported , you can import your erc20 in metamask by providing ERC20 token contract address deployed locally .  
 13) Now having ETH and ERC20 token balance in your imported account , You can either host your home or you can book a property .
 14) You can check the bookings made by this account using Get Booking button .
 
