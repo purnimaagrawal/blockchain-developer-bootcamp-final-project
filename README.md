@@ -12,7 +12,7 @@ The Idea is to create Decentralized Airbnb. Home sharing is the ideal venue for 
 6) Dapp will also check if the account which is trying to book has sufficient balance ( either ETH or DAT) , if not sufficient balance then Dapp will notify the user. 
 7) Funds will be sent to the propoerty owner once booking has been confirmed .
 8) Travellers can query the property they have booked 'Get Bookings' .
-9) As project has been deployed in the Rposten network,users can fund their account with DAT token using 'Get Funds' button . 
+9) As project has been deployed in the Ropsten network,users can fund their account with DAT token using 'Get Funds' button . 
 
 
 ## Deploy Locally :
@@ -36,16 +36,16 @@ Steps:
     -  `cd migrations`
     -  `truffle migrate`
   
-5) Copy paste Airbnb contract address in line 14 of utils.js.
-6) Copy paste the ERC20 token contract address in line 15 of utils.js .
+5) Copy paste Airbnb contract address in line 14 of [utils.js](https://github.com/purnimaagrawal/blockchain-developer-bootcamp-final-project/blob/main/dapp-ui/plugins/utils.js#:~:text=let%20airbnbContractAddress%20%3D%20%270x2592Ea578f24D72e701151df1c3E7C3FD749eA5a%27//%20Paste%20Airbnb%20Contract%20address%20here).
+6) Copy paste the ERC20 token contract address in line 15 of [utils.js](https://github.com/purnimaagrawal/blockchain-developer-bootcamp-final-project/blob/main/dapp-ui/plugins/utils.js#:~:text=let%20airbnbTokenContractAddress%20%3D%20%270x1979c404a44726722beaFC398B15395d2d55d306%27%20%20%20//%20Paste%20token%20Contract%20address%20here).
 7) To fund requesting accounts from UI with ERC20 token(Get Funds button), Populate .env file. 
 To Populate the .env file :
- - create .env file inside the dapp-ui folder 
- - use the below keys in the .env file and the corresponding values will be the public and private keys of the account which holds the ERC20 token and can fund other accounts. 
+ - create .env file inside the dapp-ui folder , use [.env.sample](https://github.com/purnimaagrawal/blockchain-developer-bootcamp-final-project/blob/main/dapp-ui/.env.sample) .
+ - values will be the public and private keys of the account which holds the ERC20 token and can fund other accounts. 
  
    ```
-    - PRIVATE_KEY_FUND = <private key>
-    - PUBLIC_KEY_FUND = <public key> 
+     PRIVATE_KEY_FUND = <private key>
+     PUBLIC_KEY_FUND = <public key> 
     ```
  
   By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
