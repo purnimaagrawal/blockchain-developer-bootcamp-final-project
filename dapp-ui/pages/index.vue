@@ -33,12 +33,15 @@ export default {
   async mounted() {
     // init Metamask
     await setProvider();
+    if(window.ethereum.networkVersion !='3'){
+    alert("You need to be in Ropsten Network")
+  }
     // fetch all properties
+     if(window.ethereum.networkVersion =='3'){
     const properties = await fetchAllProperties();
     this.posts = properties;
-  if(window.ethereum.networkVersion !='3'){
- alert("You need to be in Ropsten Network")
-  }
+     }
+
   window.ethereum.on('networkChanged', function (networkId) {
   // Time to reload your interface with the new networkId
   console.log("network chanegd ",networkId);
