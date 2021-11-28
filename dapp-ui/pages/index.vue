@@ -44,13 +44,11 @@ export default {
 
   window.ethereum.on('networkChanged', async function (networkId) {
   // Time to reload your interface with the new networkId
-  console.log("network chanegd ",networkId);
   if(networkId !=3 ){
     alert("You need to be in Ropsten Network")
+     window.location.reload(true);
   }
   else{
-    console.log(networkId)
-     console.log(window.ethereum.selectedAddress);
     const properties = await fetchAllProperties();
     this.posts = properties;
         if(this.posts.length > 0){

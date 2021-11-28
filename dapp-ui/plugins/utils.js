@@ -214,7 +214,6 @@ export async function fetchAllProperties() {
     })
 
   }
-  console.log("11",properties);
   return properties
   // push each object to properties array
 }
