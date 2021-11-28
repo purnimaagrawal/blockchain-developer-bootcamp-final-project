@@ -4,7 +4,7 @@ Anybody who uses or have used airbnb knows that guests pays too much and hosts a
 The Idea is to create Decentralized Airbnb. Home sharing is the ideal venue for a decentralized marketplace because travel is one of the world's biggest industries, and anyone with a home or a travel itinerary can participate. The underlying tech and infrastructure of blockchain is now scalable enough to accommodate the needs of such a marketplace. A decentralized platform for the home-sharing economy facilitating short and long-term stays .
 
 
-### Workflow:
+## Workflow:
 1) Property onwer can list the property 
 2) Someone who wants to rent the property can place a new booking.
 3) While placing the booking request , our Dapp will check if the property is available to rent for the dates or not .
@@ -15,7 +15,7 @@ The Idea is to create Decentralized Airbnb. Home sharing is the ideal venue for 
 9) As project has been deployed in the Rposten network,users can fund their account with DAT token using 'Get Funds' button . 
 
 
-### Deploy Locally :
+## Deploy Locally :
 
 Prerequities:
  - Node JS ( >= 14 < 15)
@@ -36,14 +36,17 @@ Steps:
     -  `cd migrations`
     -  `truffle migrate`
   
-5) Copy paste the ERC20 token contract address in line 12 of utils.js
-6) Copy paste Airbnb contract address in line 11 of utils.js
+5) Copy paste Airbnb contract address in line 14 of utils.js.
+6) Copy paste the ERC20 token contract address in line 15 of utils.js .
 7) To fund requesting accounts from UI with ERC20 token(Get Funds button), Populate .env file. 
 To Populate the .env file :
  - create .env file inside the dapp-ui folder 
  - use the below keys in the .env file and the corresponding values will be the public and private keys of the account which holds the ERC20 token and can fund other accounts. 
+ 
+   ```
     - PRIVATE_KEY_FUND = <private key>
-    - PUBLIC_KEY_FUND = <public key>
+    - PUBLIC_KEY_FUND = <public key> 
+    ```
  
   By default, the account which deployed the erc20 token will be having all the ERC20 token supply.
 
@@ -66,23 +69,26 @@ To Populate the .env file :
  ### Screencast Link
 https://youtu.be/NwUjxLGHk2M 
  
-## Interact 
+## Interact using publicly deployed web Interface
  -Front end url :
-   https://dairbnb-final-project-2021-qa6gtcnxj-purnimaagrawal.vercel.app/
+   https://dairbnb-final-project-2021-qa6gtcnxj-purnimaagrawal.vercel.app/. [More UI improvements needs to be done :( ]
  
- - SWitch to Rposten network in metamask.
+ - Switch to Rposten network in metamask.
  - It requires Ropsten ETH to interact . Get ETH here--> [https://faucet.dimensions.network/]
  - Import ERC20 token in metamask . Contract address provided [here](https://github.com/purnimaagrawal/blockchain-developer-bootcamp-final-project/blob/main/deployed_address.txt).
 
-### Future Implementation scopes : 
-- Platform can have its own token that can be used to pay for the booking .
+## Public Ethereum wallet for certification
+  0x10f868Ed8d36352064323D3E9c4D832CB94fF44a
+ 
+## Future Implementation scopes : 
 - platform can support other tokens as well .
-- Special discounts can be provided when booked using platform native token .
+- Special discounts can be provided when booked using platform native token (DAT) .
 - Reward system can be implemented . For example everytime a booking is completed , traveller can get back 2% of the total booking price back in his/her wallet .
-- Can support booking cancellations and refunds . 
+- Can support booking cancellations and refunds (Manage Bookings)  . 
 - Invite Program : User can refer friends and family and get rewarded for each referral .
-- travel packages
-- additional travel products like renting cars ,bus,transfers and other services.
+- Travel packages
+- Additional travel products like renting cars ,bus,transfers and other services.
 - NFT ?
-- Data analytics can be  applied to decentralised data stores in order to suggest optimal room rates based on comparable properties.
+- Data analytics can be applied to decentralised data stores in order to suggest optimal room rates based on comparable properties.
+ 
 
