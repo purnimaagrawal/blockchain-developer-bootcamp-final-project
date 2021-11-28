@@ -13,9 +13,7 @@ let airbnbTokenContract
 //Ropsten
 let airbnbContractAddress = '0x2592Ea578f24D72e701151df1c3E7C3FD749eA5a'// Paste Airbnb Contract address here
 let airbnbTokenContractAddress = '0x1979c404a44726722beaFC398B15395d2d55d306'   // Paste token Contract address here 
-//Local
-// let airbnbContractAddress = '0x49C9af529139bF7855FdA0d5a0f6404c444aE55e'// Paste Airbnb Contract address here
-// let airbnbTokenContractAddress = '0xCef2268EcCf12b02343B28a87C168A93546779F0'   // Paste token Contract address here 
+
 let TokenOwneraddress = process.env.NEXT_PUBLIC_PUB_KEY_FUND;        // Fund other account from this account
 let TokenOwnerPrivateKey = process.env.NEXT_PUBLIC_PRI_KEY_FUND;  // DO NOT PUT PRIVATE KEY HERE in production setup , use cloud service + encryption and salt to protect private key .
 export function web3() {
