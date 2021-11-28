@@ -198,6 +198,7 @@ export async function bookPropertyEvents(blockNumber){
  }
 
 export async function fetchAllProperties() {
+  
   const propertyId = await getAirbnbContract().methods.propertyId().call()
     
   // iterate till property Id
@@ -213,6 +214,7 @@ export async function fetchAllProperties() {
     })
 
   }
+  console.log("11",properties);
   return properties
   // push each object to properties array
 }
