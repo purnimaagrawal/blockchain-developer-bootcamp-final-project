@@ -29,7 +29,7 @@ export const accountAddress = () => {
 export async function setProvider() {
   if (typeof window.ethereum !== 'undefined') {
     console.log("Metamask detected");
-    alert("Metamak is available")
+    // alert("Metamak is available")
 }
 else {
     console.log("metamask not detected");
