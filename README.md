@@ -67,11 +67,12 @@ To Populate the .env file :
 - To run tests locally ,run  `truffle test`
 
  ### Screencast Link
-https://youtu.be/NwUjxLGHk2M 
+https://youtu.be/Us__KvqYERA
  
 ## Interact using publicly deployed web Interface
- -Front end url :
-  https://dairbnb-final-project-2021-3g7or2ecq-purnimaagrawal.vercel.app/. [More UI improvements needs to be done :( ]
+ URL :
+ https://dairbnb-final-project-2021-purnimaagrawal.vercel.app/.     
+    Note : Close button is missing from the pop ups, please refresh page to close the boxes. More UI improvements needs to be done .
  
  - Switch to Rposten network in metamask.
  - It requires Ropsten ETH to interact . Get ETH here--> [https://faucet.dimensions.network/]
