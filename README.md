@@ -68,7 +68,8 @@ https://youtu.be/NwUjxLGHk2M
  
 ## Interact 
  -Front end url :
-   https://dairbnb-final-project-2021.vercel.app/
+   https://dairbnb-final-project-2021-qa6gtcnxj-purnimaagrawal.vercel.app/
+ 
  - SWitch to Rposten network in metamask.
  - It requires Ropsten ETH to interact . Get ETH here--> [https://faucet.dimensions.network/]
  - Import ERC20 token in metamask . Contract address provided [here](https://github.com/purnimaagrawal/blockchain-developer-bootcamp-final-project/blob/main/deployed_address.txt).
