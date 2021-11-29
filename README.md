@@ -78,7 +78,7 @@ https://youtu.be/Us__KvqYERA
  - It requires Ropsten ETH to interact . Get ETH here--> [https://faucet.dimensions.network/]
  - Import ERC20 token in metamask . Contract address provided [here](https://github.com/purnimaagrawal/blockchain-developer-bootcamp-final-project/blob/main/deployed_address.txt).
 
-## Public Ethereum wallet for certification
+## Public Ethereum wallet for NFT certification
   0x10f868Ed8d36352064323D3E9c4D832CB94fF44a
  
 ## Future Implementation scopes : 
