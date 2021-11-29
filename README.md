@@ -82,6 +82,7 @@ https://youtu.be/Us__KvqYERA
   0x10f868Ed8d36352064323D3E9c4D832CB94fF44a
  
 ## Future Implementation scopes : 
+- UI improvements.
 - platform can support other tokens as well .
 - Special discounts can be provided when booked using platform native token (DAT) .
 - Reward system can be implemented . For example everytime a booking is completed , traveller can get back 2% of the total booking price back in his/her wallet .
