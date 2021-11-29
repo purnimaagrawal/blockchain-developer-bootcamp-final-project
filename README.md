@@ -74,7 +74,7 @@ https://youtu.be/Us__KvqYERA
  https://dairbnb-final-project-2021-purnimaagrawal.vercel.app/.     
     Note : Close button is missing from the pop ups, please refresh page to close the boxes. More UI improvements needs to be done .
  
- - Switch to Rposten network in metamask.
+ - Switch to Ropsten network in metamask.
  - It requires Ropsten ETH to interact . Get ETH here--> [https://faucet.dimensions.network/]
  - Import ERC20 token in metamask . Contract address provided [here](https://github.com/purnimaagrawal/blockchain-developer-bootcamp-final-project/blob/main/deployed_address.txt).
 
