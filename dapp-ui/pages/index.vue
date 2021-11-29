@@ -8,7 +8,7 @@
         <div id="mm-detected"></div>
         <button class="btn btn-primary" @click="sayhello">Get Bookings
         </button>
-       <button class="btn btn-secondary" @click="getFunds">Get Funds</button>
+       <button class="btn btn-secondary" @click="getFunds">Get DAT Tokens</button>
       <div class="row">
         <div class="m-3" v-for="post in posts">
           <card :propObject="post" key="post.id" />
