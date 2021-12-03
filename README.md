@@ -80,6 +80,41 @@ https://youtu.be/Us__KvqYERA
 
 ## Public Ethereum wallet for NFT certification
   0x10f868Ed8d36352064323D3E9c4D832CB94fF44a
+  
+## Directory Structure 
+``` bash
+
+├── README.md
+├── avoiding_common_attacks.md
+├── build
+│   └── contracts
+├── contracts
+│   ├── Airbnb.sol
+│   ├── AirbnbToken.sol
+│   └── Migrations.sol
+├── dapp-ui
+│   ├── README.md
+│   ├── assets
+│   ├── components
+│   ├── dist
+│   ├── layouts
+│   ├── nuxt.config.js
+│   ├── package.json
+│   ├── pages
+│   ├── plugins
+│   └── static
+├── deployed_address.txt
+├── design_pattern_decisions.md
+├── finalprojectchecklist.txt
+├── function.txt
+├── migrations
+│   ├── 1_initial_migration.js
+│   └── 2_deploy_contracts.js
+├── package.json
+├── test
+│   └── airbnb.js
+└── truffle-config.js
+```
  
 ## Future Implementation scopes : 
 - UI improvements.
